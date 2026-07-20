@@ -1,0 +1,23 @@
+generated: '2026-07-18'
+method: searched
+source: https://contently.com/platform/talent-api/
+docs: https://developer.contently.com
+summary:
+  types:
+  - oauth2
+  oauth2_flows:
+  - clientCredentials
+  scoped: true
+schemes:
+- name: OAuth2
+  type: oauth2
+  description: >-
+    The Contently Talent API authenticates with scoped OAuth2 access tokens. Per-route rate limits are
+    applied. Exact scope names and token/authorization endpoints are published behind the developer
+    portal (developer.contently.com); the marketing/API docs describe the model as "OAuth2 (scoped)".
+  sources:
+  - https://contently.com/platform/talent-api/
+notes: >-
+  No OpenAPI/Swagger specification is published (developer.contently.com is a JavaScript single-page app;
+  openapi.json / swagger.json return 404), so scheme detail is captured from published API documentation
+  rather than derived from a machine-readable spec.
