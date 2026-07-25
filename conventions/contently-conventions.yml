@@ -1,0 +1,42 @@
+generated: '2026-07-18'
+method: searched
+source: https://contently.com/platform/talent-api/
+authentication:
+  style: oauth2
+  detail: Scoped OAuth2 access tokens; see authentication/contently-authentication.yml
+content_type:
+  request: application/json
+  response: application/json
+  notes: REST-first, JSON in / JSON out
+idempotency:
+  supported: unknown
+  notes: No idempotency-key header or contract is documented in public materials.
+pagination:
+  style: unknown
+  notes: Not documented publicly.
+rate_limiting:
+  style: per-route
+  notes: >-
+    Per-route rate limits are applied to the Talent API. Specific limit values and response headers are
+    not published on the public pages.
+request_tracing:
+  header: x-request-id
+  observed: true
+  notes: >-
+    Responses from api.contently.com carry an x-request-id header (observed via live HTTP probe),
+    usable for support correlation.
+webhooks:
+  supported: true
+  ref: asyncapi/contently-webhooks.yml
+errors:
+  envelope: unknown
+  notes: No public error reference / problem-details schema was located.
+security_headers_observed:
+- strict-transport-security (max-age=63072000; includeSubDomains)
+- x-content-type-options: nosniff
+- x-frame-options: SAMEORIGIN
+- referrer-policy: strict-origin-when-cross-origin
+cross_links:
+  authentication: authentication/contently-authentication.yml
+  webhooks: asyncapi/contently-webhooks.yml
+  lifecycle: lifecycle/contently-lifecycle.yml

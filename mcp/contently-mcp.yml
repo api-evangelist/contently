@@ -1,0 +1,41 @@
+generated: '2026-07-18'
+method: searched
+status: published
+source: https://contently.com/platform/talent-api/
+server:
+  name: contently-talent
+  transport: http
+  url: https://mcp.contently.com
+  auth: oauth2
+  description: >-
+    Contently publishes an official MCP server that exposes the Talent API surface to Claude, ChatGPT,
+    and in-house agents. The product page states the server registers 6 tools. The host
+    https://mcp.contently.com is live (redirects/authenticates rather than serving anonymously). Exact
+    tool names/schemas require an authenticated session; the tools below are DERIVED from the publicly
+    documented Talent API endpoints and are candidates until confirmed against the live manifest.
+tools_confirmed_count: 6
+tools:
+- name: search_creatives
+  description: Search vetted creators by vertical, format, language, rate band, and prior-work history
+  source_operation: "GET /creatives"
+  status: candidate
+- name: open_project
+  description: Open an NDA-scoped project with brief, scope, deadline, and IP-assignment terms
+  source_operation: "POST /projects"
+  status: candidate
+- name: message_project
+  description: Brief and message in-thread with the creator and managing editor
+  source_operation: "POST /projects/{id}/messages"
+  status: candidate
+- name: submit_review
+  description: Submit feedback on a draft — inline notes, revision request, or approval
+  source_operation: "POST /reviews"
+  status: candidate
+- name: approve_project
+  description: Approve work and close out; Contently pays the contractor and closes the project
+  source_operation: "POST /projects/{id}/approve"
+  status: candidate
+- name: check_balance
+  description: Check funded balance, draw-down history, and projected runway
+  source_operation: "GET /balance"
+  status: candidate

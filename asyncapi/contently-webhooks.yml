@@ -1,0 +1,24 @@
+generated: '2026-07-18'
+method: searched
+spec_type: Webhooks
+source: https://contently.com/platform/talent-api/
+description: >-
+  The Contently Talent API emits state-change webhooks over Slack, Microsoft Teams, or raw HTTP. No
+  machine-readable AsyncAPI document is published; this is the documented webhook event catalog captured
+  from the Talent API product documentation.
+transports:
+- slack
+- teams
+- http
+events:
+- name: project.assigned
+  trigger: A project is assigned to a creator
+- name: draft.submitted
+  trigger: A creator submits a draft
+- name: review.responded
+  trigger: A review/threaded comment is responded to on a draft
+- name: payout.released
+  trigger: A payout is released to a contractor after approval
+notes: >-
+  Threaded comments on reviews also fire back over webhook. Slack and Teams are supported as first-class
+  delivery targets in addition to arbitrary HTTP endpoints.

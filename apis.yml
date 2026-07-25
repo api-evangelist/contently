@@ -1,7 +1,16 @@
 aid: contently
 name: Contently
-description: Contently is a company surfaced as a portfolio company of 500-global and added to the API
-  Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Contently is an end-to-end content marketing platform pairing enterprise content operations software
+  with a vetted global network of freelance writers, editors, designers, and strategists. Brands use
+  Contently to plan editorial calendars, source and manage creative talent, run review-and-approval
+  workflows, publish across channels, and measure content performance. For developers Contently exposes
+  the Talent API, a REST-first JSON API secured with scoped OAuth2 that lets teams search vetted
+  creators, open NDA-scoped projects, brief and message contributors, submit draft reviews, approve and
+  pay out work, and check funded balances. State-change webhooks (project assigned, draft submitted,
+  review responded, payout released) fan out over Slack, Teams, or raw HTTP, and an official MCP server
+  exposes the same surface to Claude, ChatGPT, and in-house agents. Contently maintains SOC 2 Type II,
+  GDPR, CCPA, and HIPAA (BAA) posture with encrypted PII and NDA-scoped workspaces.
 url: https://raw.githubusercontent.com/api-evangelist/contently/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -9,12 +18,57 @@ x-backed-by:
 - 500-global
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-18'
+image: https://contently.com/wp-content/themes/contently-redesign-theme/assets/images/brand/og-default-1200x630.png
 tags:
 - Company
-apis: []
+- Content Marketing
+- Talent Marketplace
+- Freelance
+- Content Creation
+- Publishing
+- Editorial Workflow
+- API
+apis:
+- name: Contently Talent API
+  description: >-
+    REST-first JSON API to Contently's vetted creative network and project workflow. Search creators,
+    open NDA-scoped projects, brief and message contributors, submit draft reviews, approve and pay out
+    work, and check funded balances. Secured with scoped OAuth2; state-change webhooks over Slack, Teams,
+    or HTTP.
+  humanURL: https://developer.contently.com
+  baseURL: https://api.contently.com
+  tags:
+  - Talent
+  - Freelance
+  - Content
+  - Projects
+  - Reviews
+  properties:
+  - type: Authentication
+    url: authentication/contently-authentication.yml
+  - type: MCPServer
+    url: mcp/contently-mcp.yml
+  - type: Webhooks
+    url: asyncapi/contently-webhooks.yml
+  - type: Conventions
+    url: conventions/contently-conventions.yml
+  - type: Conformance
+    url: conformance/contently-conformance.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -23,3 +77,54 @@ maintainers:
 common:
 - type: Website
   url: https://contently.com
+- type: DeveloperPortal
+  url: https://developer.contently.com
+- type: Documentation
+  url: https://developer.contently.com
+- type: GettingStarted
+  url: https://contently.com/platform/talent-api/
+- type: Blog
+  url: https://contently.com/strategist
+- type: Support
+  url: https://support.contently.com
+- type: GitHubOrganization
+  url: https://github.com/contently
+- type: Pricing
+  url: https://contently.com/pricing
+- type: SignUp
+  url: https://app.contently.com
+- type: TermsOfService
+  url: https://contently.com/terms
+- type: PrivacyPolicy
+  url: https://contently.com/privacy
+- type: StatusPage
+  url: https://status.contently.com
+- type: Lifecycle
+  url: lifecycle/contently-lifecycle.yml
+- type: TrustCenter
+  url: https://contently.com/trust/security/
+- type: Compliance
+  url: https://contently.com/trust/security/
+- type: Security
+  url: https://contently.com/security
+- type: DomainSecurity
+  url: security/contently-domain-security.yml
+- type: VulnerabilityDisclosure
+  url: security/contently-vulnerability-disclosure.yml
+- type: Authentication
+  url: authentication/contently-authentication.yml
+- type: MCPServer
+  url: mcp/contently-mcp.yml
+- type: Webhooks
+  url: asyncapi/contently-webhooks.yml
+- type: Conventions
+  url: conventions/contently-conventions.yml
+- type: Conformance
+  url: conformance/contently-conformance.yml
+- type: LLMsTxt
+  url: llms/contently-llms.txt
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

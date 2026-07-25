@@ -1,0 +1,21 @@
+generated: '2026-07-18'
+method: searched
+source: https://contently.com/platform/talent-api/
+status_page: https://status.contently.com
+versioning:
+  scheme: unknown
+  docs: https://developer.contently.com
+  notes: >-
+    Versioning scheme is not publicly documented on the marketing/API pages; the developer portal
+    (developer.contently.com) is a JavaScript SPA and no OpenAPI spec is published to derive a version
+    from. The API base host api.contently.com is live.
+deprecation:
+  policy_url: null
+  sunset_header: unknown
+sla:
+  url: https://contently.com/trust/security/
+  uptime_target: null
+deprecated_operations: []
+notes: >-
+  A public status page is published at status.contently.com. No dated changelog or deprecation-policy
+  page was located, so no ChangeLog or Deprecation pointer is emitted.

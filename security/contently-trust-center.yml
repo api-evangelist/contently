@@ -1,0 +1,40 @@
+generated: '2026-07-18'
+method: searched
+probe: true
+source: https://contently.com/trust/security/
+url: https://contently.com/trust/security/
+security_contact: security@contently.com
+response_sla: 4 business hours
+certifications:
+- SOC 2 Type II
+- GDPR
+- CCPA
+- HIPAA
+- FINRA
+compliance_notes:
+- SOC 2 Type II report available on request
+- GDPR Data Processing Agreement (DPA) available
+- CCPA compliant
+- HIPAA Business Associate Agreement (BAA) available
+- FINRA-licensed reviewer pool for regulated financial content
+- No model training on customer content
+vendor_review_packet:
+- SOC 2 report
+- DPA template
+- BAA template
+- security architecture doc
+- pre-filled CAIQ
+evidence:
+- source: https://contently.com/security
+  keywords:
+  - soc 2 type ii
+  - gdpr
+  - ccpa
+  - hipaa
+  - finra
+  - security@contently.com
+- source: https://contently.com/trust/security/
+  keywords:
+  - trust
+  - security
+  - compliance
