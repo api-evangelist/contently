@@ -2,15 +2,17 @@ aid: contently
 name: Contently
 description: >-
   Contently is an end-to-end content marketing platform pairing enterprise content operations software
-  with a vetted global network of freelance writers, editors, designers, and strategists. Brands use
+  with a vetted global network of 10,000+ freelance writers, editors, designers, and strategists,
+  positioned for regulated industries such as financial services, healthcare, and insurance. Brands use
   Contently to plan editorial calendars, source and manage creative talent, run review-and-approval
-  workflows, publish across channels, and measure content performance. For developers Contently exposes
-  the Talent API, a REST-first JSON API secured with scoped OAuth2 that lets teams search vetted
-  creators, open NDA-scoped projects, brief and message contributors, submit draft reviews, approve and
-  pay out work, and check funded balances. State-change webhooks (project assigned, draft submitted,
-  review responded, payout released) fan out over Slack, Teams, or raw HTTP, and an official MCP server
-  exposes the same surface to Claude, ChatGPT, and in-house agents. Contently maintains SOC 2 Type II,
-  GDPR, CCPA, and HIPAA (BAA) posture with encrypted PII and NDA-scoped workspaces.
+  workflows with credentialed reviewers, publish across channels, and measure content performance. For
+  developers Contently documents the Talent API, a REST-first JSON API secured with scoped OAuth2 that
+  lets teams search vetted creators, open NDA-scoped projects, brief and message contributors, submit
+  draft reviews, approve and pay out work, and check funded balances, with state-change webhooks over
+  Slack, Teams, or raw HTTP. Contently also advertises an MCP server registering six tools, though no
+  endpoint is published. No OpenAPI specification, reference documentation, or developer portal is
+  published; API access is obtained through a sales conversation. Contently maintains SOC 2 Type II,
+  GDPR, CCPA, HIPAA (BAA), and FINRA reviewer-pool posture with a published controls matrix.
 url: https://raw.githubusercontent.com/api-evangelist/contently/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -19,20 +21,25 @@ x-backed-by:
 x-tier: stub
 x-tier-reason: portfolio-lead
 accessModel:
-  pricing: unknown
-  onboarding: self-serve
+  pricing: contact-sales
+  onboarding: request
   trial: false
   try_now: false
   public: false
-  label: Self-serve signup
-  confidence: medium
+  label: Contact sales
+  confidence: high
   source:
+  - plans
   - authentication
-  generated: '2026-07-22'
-  method: derived
+  generated: '2026-08-13'
+  method: probed
+  note: >-
+    Corrected 2026-08-13. The prior value (onboarding self-serve, "Self-serve signup") was wrong. There
+    is no developer signup: https://contently.com/pricing 301s to the demo booking form, and the Talent
+    API page's only call to action is "Talk to our API team".
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-18'
+modified: '2026-08-13'
 image: https://contently.com/wp-content/themes/contently-redesign-theme/assets/images/brand/og-default-1200x630.png
 tags:
 - Company
@@ -42,6 +49,8 @@ tags:
 - Content Creation
 - Publishing
 - Editorial Workflow
+- Regulated Content
+- Compliance
 - API
 apis:
 - name: Contently Talent API
@@ -49,8 +58,9 @@ apis:
     REST-first JSON API to Contently's vetted creative network and project workflow. Search creators,
     open NDA-scoped projects, brief and message contributors, submit draft reviews, approve and pay out
     work, and check funded balances. Secured with scoped OAuth2; state-change webhooks over Slack, Teams,
-    or HTTP.
-  humanURL: https://developer.contently.com
+    or HTTP. Seven endpoints are documented in prose on the product page; no OpenAPI, no reference
+    documentation, and no developer portal are published, and access is sales-gated.
+  humanURL: https://contently.com/platform/talent-api/
   baseURL: https://api.contently.com
   tags:
   - Talent
@@ -61,14 +71,29 @@ apis:
   properties:
   - type: Authentication
     url: authentication/contently-authentication.yml
-  - type: MCPServer
-    url: mcp/contently-mcp.yml
   - type: Webhooks
     url: asyncapi/contently-webhooks.yml
   - type: Conventions
     url: conventions/contently-conventions.yml
   - type: Conformance
     url: conformance/contently-conformance.yml
+  - type: RateLimits
+    url: rate-limits/contently-rate-limits.yml
+  x-evidence:
+    verified: '2026-08-13'
+    method: live HTTP probe
+    docs_describe: >-
+      Seven REST endpoints with methods and paths, an OAuth2 scoped auth model, a four-event webhook
+      catalog, and a six-tool MCP list — published as prose on https://contently.com/platform/talent-api/
+      (HTTP 200).
+    base_url_check: >-
+      api.contently.com is a genuinely configured host (302 to /signin, serves the Contently Rails
+      application; x-request-id and x-runtime headers observed), NOT a wildcard artefact. It matches the
+      curl examples Contently publishes on the Talent API page.
+    spec_check: >-
+      No machine-readable contract. 33 OpenAPI/Swagger discovery probes across contently.com,
+      api.contently.com and developer.contently.com returned 404; GraphQL introspection returns a Rails
+      HTML 500.
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -77,54 +102,123 @@ maintainers:
 common:
 - type: Website
   url: https://contently.com
-- type: DeveloperPortal
-  url: https://developer.contently.com
 - type: Documentation
-  url: https://developer.contently.com
-- type: GettingStarted
+  url: https://contently.com/platform/talent-api/
+- type: APIReference
   url: https://contently.com/platform/talent-api/
 - type: Blog
-  url: https://contently.com/strategist
+  url: https://contently.com/strategist/
 - type: Support
   url: https://support.contently.com
 - type: GitHubOrganization
   url: https://github.com/contently
-- type: Pricing
-  url: https://contently.com/pricing
-- type: SignUp
-  url: https://app.contently.com
+- type: Login
+  url: https://contently.com/signin/
 - type: TermsOfService
-  url: https://contently.com/terms
+  url: https://contently.com/terms/
 - type: PrivacyPolicy
-  url: https://contently.com/privacy
-- type: StatusPage
-  url: https://status.contently.com
-- type: Lifecycle
-  url: lifecycle/contently-lifecycle.yml
-- type: TrustCenter
-  url: https://contently.com/trust/security/
+  url: https://contently.com/privacy-policy/
 - type: Compliance
   url: https://contently.com/trust/security/
 - type: Security
-  url: https://contently.com/security
+  url: https://contently.com/trust/security/
+- type: TrustCenter
+  url: security/contently-trust-center.yml
 - type: DomainSecurity
   url: security/contently-domain-security.yml
 - type: VulnerabilityDisclosure
   url: security/contently-vulnerability-disclosure.yml
+- type: Lifecycle
+  url: lifecycle/contently-lifecycle.yml
 - type: Authentication
   url: authentication/contently-authentication.yml
-- type: MCPServer
-  url: mcp/contently-mcp.yml
 - type: Webhooks
   url: asyncapi/contently-webhooks.yml
 - type: Conventions
   url: conventions/contently-conventions.yml
 - type: Conformance
   url: conformance/contently-conformance.yml
+- type: Plans
+  url: plans/contently-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/contently-rate-limits.yml
+- type: Packages
+  url: packages/contently-packages.yml
 - type: LLMsTxt
   url: llms/contently-llms.txt
+x-pointer-notes:
+  removed_2026-08-13:
+  - type: MCPServer
+    reason: >-
+      Removed. The pointer asserts the provider serves an MCP surface; Contently does not. It advertises
+      six MCP tools on its product page but publishes no endpoint, install command, or package. The URL
+      the prior round recorded (https://mcp.contently.com) is a wildcard DNS catch-all — it returns the
+      byte-identical 302 as a bogus control subdomain. The artifact mcp/contently-mcp.yml is retained
+      and records both the claim and its disproof. Do not re-add this pointer without a tools/list that
+      actually answers.
+  - type: StatusPage
+    reason: >-
+      Removed. status.contently.com serves the Contently application login SPA, not a status page, and
+      https://contently.statuspage.io redirects to /inactive. See lifecycle/contently-lifecycle.yml.
+  - type: DeveloperPortal
+    reason: >-
+      Removed. developer.contently.com 302s to /signin and returns the same 1,835-byte application login
+      bundle as api.contently.com and status.contently.com. It is the product login, not a portal.
+  - type: Pricing
+    reason: >-
+      Removed. https://contently.com/pricing 301s to the demo booking form; no pricing page exists. The
+      absence is recorded in plans/contently-plans-pricing.yml with plan_count 0.
+  - type: SignUp
+    reason: >-
+      Replaced with Login. app.contently.com is a wildcard catch-all redirecting to the apex; the real
+      application entry point is https://contently.com/signin/, and it is a login, not a signup.
+  withheld_2026-08-13:
+  - type: WellKnown
+    reason: All 32 /.well-known/ probes across four hosts returned 404. Probe recorded, no pointer.
+  - type: AgentCard
+    reason: No agent card at /.well-known/agent-card.json or /.well-known/agent.json on any host.
+  - type: SDKs
+    reason: >-
+      packages/ holds one genuine first-party npm package, but it is a video.js editor plugin last
+      released 2020-01-30, not a Talent API client. sdk_count is 0.
+  - type: Idempotency
+    reason: No idempotency header or retry contract is documented.
+  - type: Deprecation
+    reason: No deprecation policy or Sunset/Deprecation header contract is published.
 x-enrichment:
-  date: '2026-07-19'
-  status: backfilled
+  date: '2026-08-13'
+  status: enriched
+  artifacts_added: 4
   pass: local-v1
-  note: backfilled from .gitignore signal + verified work evidence
+  note: >-
+    Verification round. Confirmed the Talent API documentation is real, and disproved four surfaces a
+    prior round had recorded from marketing mockups and wildcard DNS.
+x-discovery:
+  checked: '2026-08-13'
+  summary: >-
+    Contently's Talent API is genuinely documented in prose on its product page and api.contently.com is
+    a real configured host, but no machine-readable contract exists anywhere — 33 OpenAPI probes, 32
+    well-known probes, GraphQL introspection, MCP tools/list and agent-card lookups all missed, and API
+    access is sales-gated behind "Talk to our API team".
+  openapi: none
+  graphql: none
+  asyncapi: none
+  agent_card: none
+  mcp: advertised-but-no-endpoint
+  evidence:
+  - url: https://contently.com/platform/talent-api/
+    status: 200
+  - url: https://api.contently.com/openapi.json
+    status: 404
+  - url: https://developer.contently.com/
+    status: 302
+  - url: https://mcp.contently.com/mcp
+    status: 500
+  - url: https://contently.com/.well-known/agent-card.json
+    status: 404
+  - url: https://contently.com/pricing
+    status: 301
+  wildcard_dns_warning: >-
+    contently.com resolves ALL unknown subdomains — any label returns a 302 to the apex. Any future
+    probe of a contently.com subdomain MUST be run against a bogus control label before its response is
+    treated as evidence of a service.
