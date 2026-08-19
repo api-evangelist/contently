@@ -37,7 +37,7 @@ accessModel:
     Corrected 2026-08-13. The prior value (onboarding self-serve, "Self-serve signup") was wrong. There
     is no developer signup: https://contently.com/pricing 301s to the demo booking form, and the Talent
     API page's only call to action is "Talk to our API team".
-specificationVersion: '0.20'
+specificationVersion: '0.23'
 created: '2026-07-17'
 modified: '2026-08-13'
 image: https://contently.com/wp-content/themes/contently-redesign-theme/assets/images/brand/og-default-1200x630.png
