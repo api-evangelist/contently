@@ -1,21 +1,60 @@
-generated: '2026-07-18'
-method: searched
-source: https://contently.com/platform/talent-api/
-status_page: https://status.contently.com
+generated: '2026-08-13'
+method: probed
+source: https://contently.com/platform/talent-api/ + live host probes
+status_page: null
+status_page_finding: >-
+  CORRECTION — a prior round recorded https://status.contently.com as Contently's status page and wired
+  a StatusPage pointer. That is wrong. status.contently.com does not serve a status page: it 302s to
+  /signin and returns the byte-identical Contently application login SPA (1,835 bytes, create-react-app
+  bundle main.0f164ffc.js) that developer.contently.com and api.contently.com serve. Separately,
+  https://contently.statuspage.io 302s to /inactive — Contently had an Atlassian Statuspage account and
+  it is deactivated. There is no operational status page. The StatusPage pointer has been removed from
+  apis.yml.
+status_page_evidence:
+- url: https://status.contently.com/
+  status: 302
+  redirects_to: https://status.contently.com/signin
+- url: https://status.contently.com/signin
+  status: 200
+  content: Contently application login SPA — identical to developer./api. hosts, not a status page
+- url: https://status.contently.com/api/v2/status.json
+  status: 404
+  note: standard Atlassian Statuspage JSON endpoint; absent
+- url: https://contently.statuspage.io
+  status: 302
+  redirects_to: https://contently.statuspage.io/inactive
+  note: Statuspage account exists but is deactivated
+- url: https://contently.com/status
+  status: 404
 versioning:
   scheme: unknown
-  docs: https://developer.contently.com
+  documented: false
   notes: >-
-    Versioning scheme is not publicly documented on the marketing/API pages; the developer portal
-    (developer.contently.com) is a JavaScript SPA and no OpenAPI spec is published to derive a version
-    from. The API base host api.contently.com is live.
+    No version segment appears in any published endpoint path — the Talent API page documents
+    GET /creatives, POST /projects, POST /projects/<id>/messages, POST /reviews,
+    POST /projects/<id>/approve, GET /balance and GET /collaborators, all unversioned. No versioning
+    policy, no version header, and no OpenAPI document exist to derive a version from.
 deprecation:
   policy_url: null
+  policy_documented: false
   sunset_header: unknown
+  notes: >-
+    No deprecation policy, no RFC 8594 Sunset/Deprecation header contract, and no migration guidance
+    published. No Deprecation pointer is emitted.
+changelog:
+  url: null
+  documented: false
+  notes: No dated API changelog or release-notes page was found. No ChangeLog pointer is emitted.
 sla:
-  url: https://contently.com/trust/security/
   uptime_target: null
+  url: null
+  notes: >-
+    No uptime SLA is published. The only SLA Contently states publicly is a 4-business-hour response
+    target for the security/compliance contact (security@contently.com), which is a support-response
+    commitment, not an availability commitment. Backup RPO/RTO targets exist but are stated to live in
+    the NDA-restricted vendor packet.
 deprecated_operations: []
 notes: >-
-  A public status page is published at status.contently.com. No dated changelog or deprecation-policy
-  page was located, so no ChangeLog or Deprecation pointer is emitted.
+  Contently publishes no lifecycle machinery for the Talent API: no version, no deprecation policy, no
+  changelog, no status page, no uptime SLA. An integrator has no published way to learn that the API
+  changed or that it is down.

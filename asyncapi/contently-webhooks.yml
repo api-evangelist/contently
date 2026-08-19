@@ -1,24 +1,45 @@
-generated: '2026-07-18'
+generated: '2026-08-13'
 method: searched
 spec_type: Webhooks
 source: https://contently.com/platform/talent-api/
 description: >-
   The Contently Talent API emits state-change webhooks over Slack, Microsoft Teams, or raw HTTP. No
-  machine-readable AsyncAPI document is published; this is the documented webhook event catalog captured
-  from the Talent API product documentation.
+  AsyncAPI document is published — this is the webhook catalog transcribed from the Talent API product
+  page, which is the only place Contently documents it.
+asyncapi_published: false
+asyncapi_probe:
+  note: >-
+    /asyncapi.yaml, /asyncapi.json and an event-catalog path were not found; no OpenAPI or AsyncAPI
+    document exists on any Contently host (see well-known/contently-well-known.yml).
 transports:
 - slack
 - teams
 - http
+delivery_note: >-
+  Slack and Microsoft Teams are named as first-class delivery targets alongside arbitrary HTTP
+  endpoints — 'Slack, Teams, raw HTTP'.
 events:
 - name: project.assigned
+  documented_as: Project assigned
   trigger: A project is assigned to a creator
 - name: draft.submitted
+  documented_as: Draft submitted
   trigger: A creator submits a draft
 - name: review.responded
-  trigger: A review/threaded comment is responded to on a draft
+  documented_as: Review responded
+  trigger: A creator responds to review feedback on a draft
 - name: payout.released
+  documented_as: Payout released
   trigger: A payout is released to a contractor after approval
+event_name_caveat: >-
+  Contently publishes these as prose labels ('Project assigned, draft submitted, review responded,
+  payout released'), NOT as wire identifiers. The dotted names above are a normalization for cataloging
+  and must not be treated as the literal event type strings — Contently publishes no event-type
+  vocabulary, no payload schema, no delivery/retry semantics, and no signature-verification scheme.
+payload_schemas: none_published
+signature_verification: not_documented
+retry_policy: not_documented
 notes: >-
-  Threaded comments on reviews also fire back over webhook. Slack and Teams are supported as first-class
-  delivery targets in addition to arbitrary HTTP endpoints.
+  Threaded comments on reviews are documented to 'fire back over webhook', and the messaging endpoint
+  notes 'Slack and Teams webhooks supported'. An integrator can learn that four state changes exist but
+  cannot learn what any of them will send.

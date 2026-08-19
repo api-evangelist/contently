@@ -1,41 +1,80 @@
-generated: '2026-07-18'
+generated: '2026-08-13'
 method: searched
-status: published
+status: documented-no-endpoint
 source: https://contently.com/platform/talent-api/
-server:
-  name: contently-talent
-  transport: http
-  url: https://mcp.contently.com
-  auth: oauth2
-  description: >-
-    Contently publishes an official MCP server that exposes the Talent API surface to Claude, ChatGPT,
-    and in-house agents. The product page states the server registers 6 tools. The host
-    https://mcp.contently.com is live (redirects/authenticates rather than serving anonymously). Exact
-    tool names/schemas require an authenticated session; the tools below are DERIVED from the publicly
-    documented Talent API endpoints and are candidates until confirmed against the live manifest.
-tools_confirmed_count: 6
+description: >-
+  Contently advertises an MCP server on its Talent API product page and names six tools verbatim in a
+  mock "mcp tools/list" panel. No endpoint URL, install command, or package is published anywhere on
+  Contently's public surface, so no agent can reach it without going through the sales gate. This file
+  records the provider's published CLAIM and the tool names exactly as Contently writes them; it does
+  NOT assert a reachable agent surface.
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: oauth
+  verified: probed
+  note: >-
+    mode is none because Contently publishes NO reachable MCP endpoint. A prior enrichment round recorded
+    https://mcp.contently.com as the server URL; that host is a WILDCARD CATCH-ALL, not a service.
+    Proof: https://zzz-control-1.contently.com/ and https://mcp.contently.com/ return byte-identical
+    302 redirects to https://contently.com/, as does any nonexistent label under contently.com. A
+    POST tools/list to https://mcp.contently.com/mcp returns a Rails HTML 500 error page, the same
+    response as https://api.contently.com/mcp — it is the Contently web application erroring, not an
+    MCP transport. Auth is recorded as oauth because the product page states "auth: oauth2 (scoped)".
+x-evidence:
+  checked: '2026-08-13'
+  probes:
+  - url: https://mcp.contently.com/
+    status: 302
+    result: redirects to https://contently.com/ — identical to a bogus control subdomain
+  - url: https://zzz-control-1.contently.com/
+    status: 302
+    result: control probe; identical response proves mcp. is wildcard, not a configured host
+  - url: https://mcp.contently.com/mcp
+    status: 500
+    result: Rails "We're sorry, but something went wrong" HTML, not a JSON-RPC response
+  - url: https://api.contently.com/mcp
+    status: 500
+    result: same Rails error page; no MCP transport on the API host either
+  - url: https://mcp.contently.com/.well-known/oauth-authorization-server
+    status: 404
+  - url: https://api.contently.com/.well-known/oauth-protected-resource
+    status: 404
+tools_documented_count: 6
+tools_note: >-
+  Tool names below are transcribed VERBATIM from the "mcp tools/list" panel on
+  https://contently.com/platform/talent-api/. A prior round recorded a different, invented set
+  (search_creatives, open_project, message_project, submit_review, approve_project, check_balance)
+  derived from endpoint names rather than read from the page. These are the names Contently actually
+  publishes. Input schemas are NOT published and cannot be introspected without an authenticated
+  session, so none are recorded.
 tools:
-- name: search_creatives
-  description: Search vetted creators by vertical, format, language, rate band, and prior-work history
-  source_operation: "GET /creatives"
-  status: candidate
-- name: open_project
-  description: Open an NDA-scoped project with brief, scope, deadline, and IP-assignment terms
-  source_operation: "POST /projects"
-  status: candidate
-- name: message_project
-  description: Brief and message in-thread with the creator and managing editor
-  source_operation: "POST /projects/{id}/messages"
-  status: candidate
-- name: submit_review
-  description: Submit feedback on a draft — inline notes, revision request, or approval
-  source_operation: "POST /reviews"
-  status: candidate
-- name: approve_project
-  description: Approve work and close out; Contently pays the contractor and closes the project
-  source_operation: "POST /projects/{id}/approve"
-  status: candidate
-- name: check_balance
-  description: Check funded balance, draw-down history, and projected runway
-  source_operation: "GET /balance"
-  status: candidate
+- name: contently.search_creatives
+  description: vertical, format, language · ranked
+  status: documented
+  input_schema: null
+- name: contently.create_project
+  description: brief, scope, NDA workspace
+  status: documented
+  input_schema: null
+- name: contently.submit_review
+  description: inline notes, revision request
+  status: documented
+  input_schema: null
+- name: contently.list_revisions
+  description: version history per project
+  status: documented
+  input_schema: null
+- name: contently.request_payout
+  description: PayPal · tax-form gated
+  status: documented
+  input_schema: null
+- name: contently.list_collaborators
+  description: past creators, ratings, repeats
+  status: documented
+  input_schema: null
+notes: >-
+  The product page's own call to action for the API and MCP surface is "Talk to our API team" — a
+  contact form, not a signup. Access to the MCP server is sales-gated.

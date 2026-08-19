@@ -1,32 +1,100 @@
-generated: '2026-07-18'
+generated: '2026-08-13'
 method: searched
-source: https://contently.com/platform/talent-api/
+source: https://contently.com/platform/talent-api/ + https://contently.com/trust/security/
+description: >-
+  Cross-cutting standards assertions for Contently. Everything conforming here is a compliance/security
+  posture claim published on the trust center; nothing in the API-technical column conforms, because
+  Contently publishes no machine-readable contract.
 standards:
 - id: oauth2
   conforms: true
-  evidence: Talent API documents scoped OAuth2 access tokens
+  evidence: >-
+    Talent API page states "OAuth2 with scoped tokens" and "auth: oauth2 (scoped)". Flows, endpoints
+    and scope names are not published, so this is a documented claim rather than a verified profile.
+  verification: documented-only
 - id: rest-json
   conforms: true
-  evidence: REST-first, JSON request/response
+  evidence: '"REST first. JSON in, JSON out." — seven documented endpoints on unversioned plural paths.'
+  verification: documented-only
 - id: webhooks
   conforms: true
-  evidence: State-change webhooks over Slack/Teams/HTTP
+  evidence: >-
+    State-change webhooks documented for project assigned, draft submitted, review responded and
+    payout released, over Slack, Teams or raw HTTP. See asyncapi/contently-webhooks.yml.
+  verification: documented-only
 - id: soc2-type2
   conforms: true
-  evidence: SOC 2 Type II reported on contently.com/security
+  evidence: 'Trust center: "SOC 2 Type II" carried; report available on request to security@contently.com.'
+  verification: claimed-report-on-request
 - id: gdpr
   conforms: true
-  evidence: GDPR DPA available (contently.com/trust/security/)
+  evidence: 'Trust center: "GDPR — DPA available".'
 - id: ccpa
   conforms: true
-  evidence: CCPA compliant (contently.com/security)
+  evidence: 'Trust center: "CCPA — Compliant".'
 - id: hipaa
   conforms: true
-  evidence: HIPAA BAA available (contently.com/security)
+  evidence: 'Trust center: "HIPAA — BAA available".'
+- id: finra
+  conforms: true
+  evidence: >-
+    Trust center: "FINRA — Reviewer pool"; review routing documented to FINRA Series 7 / Series 24
+    credentialed reviewers for regulated financial content.
+- id: tls13
+  conforms: true
+  evidence: >-
+    Controls matrix states "Encryption in transit — TLS 1.3"; independently confirmed by live probe
+    (TLSv1.3 on contently.com, api.contently.com, developer.contently.com).
+  verification: probed
+- id: saml-sso
+  conforms: true
+  evidence: 'Controls matrix: "SSO / SAML — Supported".'
+- id: openapi
+  conforms: false
+  evidence: >-
+    No OpenAPI or Swagger document on any host. 33 discovery probes across contently.com,
+    api.contently.com and developer.contently.com returned 404.
+- id: asyncapi
+  conforms: false
+  evidence: No AsyncAPI document published; the webhook catalog is prose only.
 - id: rfc9457-problem-details
   conforms: false
-  evidence: No problem+json error contract documented
+  evidence: No problem+json error contract or error reference published.
+- id: rfc8594-sunset
+  conforms: false
+  evidence: No deprecation policy or Sunset/Deprecation header contract published.
+- id: ratelimit-headers
+  conforms: false
+  evidence: >-
+    No X-RateLimit-*, RateLimit-* or Retry-After header observed on any response from
+    api.contently.com; no limits published.
+- id: oauth-discovery
+  conforms: false
+  evidence: >-
+    /.well-known/oauth-authorization-server, /.well-known/oauth-protected-resource and
+    /.well-known/openid-configuration all 404 on every host.
+- id: mcp
+  conforms: false
+  evidence: >-
+    An MCP server with six named tools is advertised, but no endpoint, install command or package is
+    published and no tools/list responds. See mcp/contently-mcp.yml.
+- id: a2a
+  conforms: false
+  evidence: >-
+    No agent card at /.well-known/agent-card.json or /.well-known/agent.json on any of the four hosts
+    probed.
+- id: securitytxt
+  conforms: false
+  evidence: /.well-known/security.txt returns 404 on every host.
 - id: fhir-r4
   conforms: false
 - id: fapi
   conforms: false
+- id: scim
+  conforms: false
+- id: odata
+  conforms: false
+notes: >-
+  The split is stark and worth naming: Contently's COMPLIANCE posture is well documented and specific
+  (named certifications, a published controls matrix, a credentialed reviewer pool), while its API
+  TECHNICAL posture publishes nothing a machine can read.

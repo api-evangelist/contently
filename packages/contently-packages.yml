@@ -1,0 +1,52 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  registry.npmjs.org search + scope query, pypi.org, rubygems.org, api.github.com/orgs/contently
+description: >-
+  Package-registry sweep for first-party Contently client libraries. RESULT: Contently publishes NO
+  SDK for the Talent API on any registry. One genuine first-party npm package exists under the
+  @contently scope, but it is a video.js editor plugin, not an API client. No SDKs pointer is emitted
+  in apis.yml, because an SDK is not what was found.
+sdk_count: 0
+package_count: 1
+registries_checked:
+- registry: npm
+  query: text=contently + scope:contently
+  result: 1 first-party package (@contently scope); all other "contently"-named packages belong to
+    unrelated authors (krmax44's static-site generator, forks of the video.js plugin)
+- registry: pypi
+  query: pypi.org/pypi/contently/json
+  result: 404 — no package
+- registry: rubygems
+  query: rubygems.org/api/v1/search.json?query=contently
+  result: no Contently-authored gem (results are Contentful, an unrelated vendor)
+- registry: github
+  query: api.github.com/orgs/contently
+  result: org exists (created 2011-08-31) but has 0 public repositories
+packages:
+- name: '@contently/videojs-annotation-comments'
+  registry: npm
+  url: https://www.npmjs.com/package/@contently/videojs-annotation-comments
+  official: true
+  official_evidence: >-
+    Published under Contently's own @contently npm scope; repository field points at
+    github.com/contently/videojs-annotation-comments.
+  version: 2.0.1
+  published: '2020-01-30'
+  versions_published: 6
+  first_published: '2019-01-18'
+  last_registry_change: '2022-04-05'
+  language: javascript
+  description: A plugin for video.js to add support for timeline moment/range comments and annotations
+  is_api_client: false
+  note: >-
+    This is an editor/UI plugin extracted from Contently's product, NOT a client library for the
+    Talent API. Its latest release (2.0.1, 2020-01-30) predates the Talent API product page by years,
+    and the GitHub repository it names is no longer public — the contently org shows 0 public repos.
+    Recorded as a first-party package and as an abandonment signal; deliberately NOT counted as an SDK.
+talent_api_sdks:
+  count: 0
+  note: >-
+    The Talent API product page documents seven REST endpoints and an MCP tool list but links no
+    client library, no code samples beyond inline curl, and no repository. Nothing was found on npm,
+    PyPI, RubyGems, Packagist, crates.io, NuGet, Maven Central or pkg.go.dev.

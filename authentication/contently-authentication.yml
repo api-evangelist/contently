@@ -1,23 +1,63 @@
-generated: '2026-07-18'
+generated: '2026-08-13'
 method: searched
 source: https://contently.com/platform/talent-api/
-docs: https://developer.contently.com
+docs: https://contently.com/platform/talent-api/
 summary:
   types:
   - oauth2
-  oauth2_flows:
-  - clientCredentials
   scoped: true
+  flows_documented: false
+  token_endpoint: null
+  authorization_endpoint: null
 schemes:
 - name: OAuth2
   type: oauth2
   description: >-
-    The Contently Talent API authenticates with scoped OAuth2 access tokens. Per-route rate limits are
-    applied. Exact scope names and token/authorization endpoints are published behind the developer
-    portal (developer.contently.com); the marketing/API docs describe the model as "OAuth2 (scoped)".
+    The Contently Talent API authenticates with scoped OAuth2 access tokens. Contently states this in
+    three places on the Talent API page: "OAuth2 with scoped tokens" (Endpoint surface), "OAuth2 with
+    scoped tokens. Per-route rate limits. Encrypted PII." (Workspace governance), and
+    "auth: oauth2 (scoped)" (MCP tools panel).
+  flows: []
+  scopes: []
+  detail_published: false
+  detail_note: >-
+    No grant type, token endpoint, authorization endpoint, scope name, or token lifetime is published.
+    The OAuth discovery documents that would carry them
+    (/.well-known/oauth-authorization-server, /.well-known/oauth-protected-resource,
+    /.well-known/openid-configuration) return 404 on contently.com, api.contently.com and
+    developer.contently.com. A prior round asserted a clientCredentials flow; nothing in Contently's
+    published material states a flow, so that assertion has been removed.
   sources:
   - https://contently.com/platform/talent-api/
+credential_acquisition:
+  self_serve: false
+  path: sales
+  note: >-
+    There is no developer signup. The Talent API page's only call to action is "Talk to our API team",
+    a contact form. Credentials are issued through a sales conversation.
+developer_portal_finding: >-
+  CORRECTION — a prior round recorded https://developer.contently.com as the developer portal and as the
+  auth documentation source. developer.contently.com does not serve documentation: it 302s to /signin
+  and returns the Contently application login SPA (1,835 bytes, create-react-app bundle
+  main.0f164ffc.js) — byte-identical to what api.contently.com and status.contently.com serve. It is
+  the product login, not a developer portal. The only real auth documentation is the prose on
+  https://contently.com/platform/talent-api/, which is what this file now cites.
+x-evidence:
+  checked: '2026-08-13'
+  probes:
+  - url: https://developer.contently.com/
+    status: 302
+    redirects_to: https://developer.contently.com/signin
+  - url: https://developer.contently.com/signin
+    status: 200
+    result: application login SPA, no documentation
+  - url: https://api.contently.com/.well-known/oauth-authorization-server
+    status: 404
+  - url: https://api.contently.com/.well-known/oauth-protected-resource
+    status: 404
+  - url: https://contently.com/.well-known/openid-configuration
+    status: 404
 notes: >-
-  No OpenAPI/Swagger specification is published (developer.contently.com is a JavaScript single-page app;
-  openapi.json / swagger.json return 404), so scheme detail is captured from published API documentation
-  rather than derived from a machine-readable spec.
+  No OpenAPI/Swagger specification is published on any Contently host (33 discovery probes, all 404),
+  so every field here is read from published prose rather than derived from a machine-readable spec.
+  No scopes/ artifact is emitted because Contently publishes no scope names.

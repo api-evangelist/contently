@@ -1,0 +1,52 @@
+generated: '2026-08-13'
+method: probed
+source: https://contently.com/platform/talent-api/ + live response-header observation on api.contently.com
+description: >-
+  Contently states that the Talent API applies rate limits but publishes no numbers, no windows, and
+  no header contract. Live responses from api.contently.com carry no rate-limit headers at all.
+limit_count: 0
+documented_limits: []
+published_claim:
+  text: 'Per-route rate limits.'
+  location: https://contently.com/platform/talent-api/
+  context: >-
+    Appears twice — in the "Endpoint surface" intro ("REST first. JSON in, JSON out. Webhooks on every
+    state change. OAuth2 with scoped tokens.") and under "Workspace governance" ("OAuth2 with scoped
+    tokens. Per-route rate limits. Encrypted PII.").
+  quantified: false
+  note: >-
+    The claim names a SHAPE (per-route) but no value. No limit, window, burst, or quota is published
+    anywhere on Contently's public surface.
+response_headers:
+  observed: []
+  ratelimit_headers_present: false
+  retry_after_present: false
+  exhaustion_status_code: unknown
+  observation:
+    url: https://api.contently.com/signin
+    status: 200
+    checked: '2026-08-13'
+    headers_seen:
+    - cache-control
+    - etag
+    - pragma
+    - referrer-policy
+    - vary
+    - x-content-type-options
+    - x-frame-options
+    - x-permitted-cross-domain-policies
+    - x-request-id
+    - x-runtime
+    - x-xss-protection
+    - strict-transport-security
+    note: >-
+      No X-RateLimit-*, RateLimit-*, or Retry-After header on any observed response. The host is a
+      Rails application (x-runtime, x-request-id, _contently_session cookie). Only unauthenticated
+      surfaces could be observed; authenticated Talent API routes may signal differently, but nothing
+      is published to say so.
+agent_impact: >-
+  An agent integrating the Talent API cannot determine its budget before calling, and gets no runtime
+  signal to back off with. Both the documented number and the response-header contract are missing.
+notes: >-
+  limit_count is 0 rather than the file being omitted: the provider asserts limits exist while
+  publishing nothing an implementer or an agent could act on.

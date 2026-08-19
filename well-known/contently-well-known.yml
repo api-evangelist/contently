@@ -1,0 +1,144 @@
+generated: '2026-08-13'
+method: probed
+source: live HTTP probes of every host named in apis.yml
+description: >-
+  Well-known probe across every Contently host. RESULT: NOTHING. All 32 probes returned 404. No
+  WellKnown or SecurityTxt pointer is emitted in apis.yml, because a recorded absence is not a
+  presence.
+result: none
+hits: 0
+probes_total: 32
+hosts_probed:
+- contently.com
+- api.contently.com
+- developer.contently.com
+- mcp.contently.com
+probes:
+- host: contently.com
+  paths:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+    note: 404 body is the 80KB WordPress themed 404 page, not a document
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+- host: api.contently.com
+  paths:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+- host: developer.contently.com
+  paths:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+- host: mcp.contently.com
+  paths:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+  note: >-
+    mcp.contently.com is a wildcard catch-all, not a configured host — see mcp/contently-mcp.yml.
+    Probed anyway for completeness.
+contract_discovery:
+  openapi: none
+  note: >-
+    /openapi.json, /openapi.yaml, /swagger.json, /v1/openapi.json, /api-docs, /docs and /redoc were
+    probed on contently.com, api.contently.com and developer.contently.com — 33 probes, all 404.
+  graphql: none
+  graphql_note: >-
+    POST introspection to https://api.contently.com/graphql returns a Rails HTML 500; contently.com/graphql
+    returns the WordPress 404 page. No GraphQL surface.
+  agent_card: none
+  mcp: documented-but-no-endpoint
+incidental_surface:
+  - url: https://contently.com/wp-json/
+    status: 200
+    kind: WordPress REST API
+    note: >-
+      The marketing site runs WordPress on WP Engine and its CMS REST API answers anonymously with 356
+      routes across 20 namespaces. This is the website's content-management API, NOT Contently's
+      product API, so it is deliberately NOT listed as an apis[] entry. Recorded because it is, as of
+      this probe, the only machine-readable contract Contently serves on any of its hosts.

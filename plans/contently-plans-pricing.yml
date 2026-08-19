@@ -1,0 +1,42 @@
+generated: '2026-08-13'
+method: probed
+source: https://contently.com/pricing
+description: >-
+  Contently publishes NO pricing. There is no plans page, no tier table, and no self-serve signup for
+  the Talent API. Every commercial path terminates in a sales form.
+plan_count: 0
+pricing_model: contact-sales
+currency: null
+free_tier: false
+trial: false
+self_serve: false
+evidence:
+- url: https://contently.com/pricing
+  status: 301
+  redirects_to: https://contently.com/demo/
+  note: The pricing slug does not serve a pricing page; it 301s straight to the demo booking form.
+- url: https://contently.com/demo/
+  status: 200
+  title: Book a Content Strategy Call
+  note: >-
+    A meeting-booking form. No prices, no tiers, no quotas. Copy reads "A strategist who knows your
+    vertical will be on the call."
+- url: https://contently.com/platform/talent-api/
+  status: 200
+  note: >-
+    The Talent API page's only conversion action is "Talk to our API team". It describes a funded
+    content-bank commercial model — "You fund a content bank with Contently", "one invoice, monthly",
+    "You pay Contently, in your currency, on your billing cycle" — but publishes no rate, no minimum,
+    and no unit price.
+commercial_model_documented:
+  structure: prepaid funded balance drawn down per project, billed as a single monthly invoice
+  includes: sourcing, vetting, briefing, managing-editor oversight, contracts, and contractor payouts
+  vendor_posture: Contently is the sole vendor of record; contractors are paid by Contently
+  price: null
+  minimum: null
+  note: >-
+    The model is described qualitatively on the Talent API page. No monetary figure of any kind is
+    published. The "$48,200 funded balance" shown on that page is an illustrative UI mockup, not a plan.
+notes: >-
+  plan_count is 0 rather than the file being omitted: the absence of published pricing is the finding.
+  Contently is an enterprise contact-sales vendor with no public commercial terms for its API.

@@ -1,42 +1,92 @@
-generated: '2026-07-18'
+generated: '2026-08-13'
 method: searched
-source: https://contently.com/platform/talent-api/
+source: https://contently.com/platform/talent-api/ + live response-header observation on api.contently.com
 authentication:
   style: oauth2
   detail: Scoped OAuth2 access tokens; see authentication/contently-authentication.yml
 content_type:
   request: application/json
   response: application/json
-  notes: REST-first, JSON in / JSON out
+  notes: 'Talent API page states: "REST first. JSON in, JSON out."'
+resource_naming:
+  style: plural-noun collections, unversioned
+  observed_paths:
+  - GET /creatives
+  - POST /projects
+  - POST /projects/<id>/messages
+  - POST /reviews
+  - POST /projects/<id>/approve
+  - GET /balance
+  - GET /collaborators
+  notes: >-
+    Path-nested sub-resources for project-scoped actions; approve is modelled as an RPC-style verb on
+    the project. No version prefix on any documented path.
+status_codes_documented:
+  codes:
+  - '200 ok'
+  - '201 created'
+  - '202 accepted'
+  notes: >-
+    Shown in the animated curl panel on the Talent API page — 200 on GET /creatives, 201 on
+    POST /projects, 202 on POST /projects/<id>/reviews, 200 on POST /projects/<id>/approve. Note the
+    hero panel writes the review call as POST /projects/8f3c/reviews while the endpoint list writes it
+    as POST /reviews; the two disagree and neither is authoritative.
 idempotency:
   supported: unknown
-  notes: No idempotency-key header or contract is documented in public materials.
+  header: null
+  notes: >-
+    No idempotency key, header, or retry contract is documented. No Idempotency pointer is emitted.
 pagination:
   style: unknown
-  notes: Not documented publicly.
-rate_limiting:
-  style: per-route
   notes: >-
-    Per-route rate limits are applied to the Talent API. Specific limit values and response headers are
-    not published on the public pages.
+    GET /creatives is documented as returning "ranked candidates" and the mockup shows "+11 more", but
+    no pagination parameter, cursor, or envelope field is published.
+field_expansion:
+  supported: unknown
+metadata:
+  supported: unknown
 request_tracing:
   header: x-request-id
   observed: true
+  format: uuid
+  example_observed: 6d368d1b-4efe-4b6b-9c53-8d7039116b19
   notes: >-
-    Responses from api.contently.com carry an x-request-id header (observed via live HTTP probe),
-    usable for support correlation.
+    Confirmed live on 2026-08-13: every response from api.contently.com carries an x-request-id UUID
+    plus x-runtime. This is Rails default instrumentation rather than a documented contract, but it is
+    real and usable for support correlation.
+versioning:
+  scheme: unknown
+  ref: lifecycle/contently-lifecycle.yml
+rate_limiting:
+  style: per-route
+  quantified: false
+  headers: []
+  ref: rate-limits/contently-rate-limits.yml
+  notes: >-
+    "Per-route rate limits" is asserted on the product page with no values and no response headers
+    observed.
+errors:
+  envelope: unknown
+  problem_json: false
+  notes: >-
+    No public error reference, no error-code list, and no RFC 9457 problem+json contract. No
+    errors/ artifact is emitted because there is nothing to catalog.
 webhooks:
   supported: true
   ref: asyncapi/contently-webhooks.yml
-errors:
-  envelope: unknown
-  notes: No public error reference / problem-details schema was located.
 security_headers_observed:
-- strict-transport-security (max-age=63072000; includeSubDomains)
-- x-content-type-options: nosniff
-- x-frame-options: SAMEORIGIN
-- referrer-policy: strict-origin-when-cross-origin
+- 'strict-transport-security: max-age=63072000; includeSubDomains'
+- 'x-content-type-options: nosniff'
+- 'x-frame-options: SAMEORIGIN'
+- 'referrer-policy: strict-origin-when-cross-origin'
+- 'x-permitted-cross-domain-policies: none'
+- 'x-xss-protection: 0'
 cross_links:
   authentication: authentication/contently-authentication.yml
-  webhooks: asyncapi/contently-webhooks.yml
   lifecycle: lifecycle/contently-lifecycle.yml
+  rate_limits: rate-limits/contently-rate-limits.yml
+  webhooks: asyncapi/contently-webhooks.yml
+notes: >-
+  Every convention here is read from marketing-page prose or observed on the wire. Contently publishes
+  no OpenAPI, no error reference, and no reference documentation, so idempotency, pagination, expansion
+  and error shape are all genuinely unknown rather than absent.
