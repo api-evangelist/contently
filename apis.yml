@@ -51,6 +51,16 @@ tags:
 - Editorial Workflow
 - Regulated Content
 - Compliance
+tags_raw:
+- Company
+- Content Marketing
+- Talent Marketplace
+- Freelance
+- Content Creation
+- Publishing
+- Editorial Workflow
+- Regulated Content
+- Compliance
 - API
 apis:
 - name: Contently Talent API
@@ -63,6 +73,12 @@ apis:
   humanURL: https://contently.com/platform/talent-api/
   baseURL: https://api.contently.com
   tags:
+  - Talent
+  - Freelance
+  - Content
+  - Project
+  - Reviews
+  tags_raw:
   - Talent
   - Freelance
   - Content
