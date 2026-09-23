@@ -1,0 +1,30 @@
+# Front Door AI Index — contently — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: contently
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: contently.com
+  final_host: contently.com
+  ownership: own
+  owner: contently
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 30
+  host_score: 30
+  density: 18.32
+  words: 1638
+  tiers:
+    agentic: 1
+    core: 25
+    model: 4
+  ambiguous: 1
+  top_terms:
+    AI: 22
+    ChatGPT: 3
+    LLMs: 3
+    Gemini: 1
+    MCP: 1
+    agent: 1

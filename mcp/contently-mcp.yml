@@ -2,27 +2,20 @@ generated: '2026-08-13'
 method: searched
 status: documented-no-endpoint
 source: https://contently.com/platform/talent-api/
-description: >-
-  Contently advertises an MCP server on its Talent API product page and names six tools verbatim in a
-  mock "mcp tools/list" panel. No endpoint URL, install command, or package is published anywhere on
-  Contently's public surface, so no agent can reach it without going through the sales gate. This file
+description: Contently advertises an MCP server on its Talent API product page and names six tools verbatim
+  in a mock "mcp tools/list" panel. No endpoint URL, install command, or package is published anywhere
+  on Contently's public surface, so no agent can reach it without going through the sales gate. This file
   records the provider's published CLAIM and the tool names exactly as Contently writes them; it does
   NOT assert a reachable agent surface.
 deployment:
   mode: none
-  endpoint: null
-  install: null
-  package: null
-  auth: oauth
+  endpoint: https://mcp.contently.com
   verified: probed
-  note: >-
-    mode is none because Contently publishes NO reachable MCP endpoint. A prior enrichment round recorded
-    https://mcp.contently.com as the server URL; that host is a WILDCARD CATCH-ALL, not a service.
-    Proof: https://zzz-control-1.contently.com/ and https://mcp.contently.com/ return byte-identical
-    302 redirects to https://contently.com/, as does any nonexistent label under contently.com. A
-    POST tools/list to https://mcp.contently.com/mcp returns a Rails HTML 500 error page, the same
-    response as https://api.contently.com/mcp — it is the Contently web application erroring, not an
-    MCP transport. Auth is recorded as oauth because the product page states "auth: oauth2 (scoped)".
+  probe: dead
+  note: the endpoint this manifest claimed did not answer; recorded as none rather than deleted so the
+    claim stays auditable
+  checked: '2026-08-12'
+  source: catalog MCP census
 x-evidence:
   checked: '2026-08-13'
   probes:
@@ -43,13 +36,11 @@ x-evidence:
   - url: https://api.contently.com/.well-known/oauth-protected-resource
     status: 404
 tools_documented_count: 6
-tools_note: >-
-  Tool names below are transcribed VERBATIM from the "mcp tools/list" panel on
-  https://contently.com/platform/talent-api/. A prior round recorded a different, invented set
-  (search_creatives, open_project, message_project, submit_review, approve_project, check_balance)
-  derived from endpoint names rather than read from the page. These are the names Contently actually
-  publishes. Input schemas are NOT published and cannot be introspected without an authenticated
-  session, so none are recorded.
+tools_note: Tool names below are transcribed VERBATIM from the "mcp tools/list" panel on https://contently.com/platform/talent-api/.
+  A prior round recorded a different, invented set (search_creatives, open_project, message_project, submit_review,
+  approve_project, check_balance) derived from endpoint names rather than read from the page. These are
+  the names Contently actually publishes. Input schemas are NOT published and cannot be introspected without
+  an authenticated session, so none are recorded.
 tools:
 - name: contently.search_creatives
   description: vertical, format, language · ranked
@@ -75,6 +66,5 @@ tools:
   description: past creators, ratings, repeats
   status: documented
   input_schema: null
-notes: >-
-  The product page's own call to action for the API and MCP surface is "Talk to our API team" — a
+notes: The product page's own call to action for the API and MCP surface is "Talk to our API team" — a
   contact form, not a signup. Access to the MCP server is sales-gated.
