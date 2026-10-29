@@ -64,6 +64,115 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Contently is a company surfaced as a portfolio company of 500-global and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+Contently is an end-to-end content marketing platform pairing enterprise content operations software with a vetted global network of 10,000+ freelance writers, editors, designers, and strategists, positioned for regulated industries such as financial services, healthcare, and insurance. Brands use Contently to plan editorial calendars, source and manage creative talent, run review-and-approval workflows with credentialed reviewers, publish across channels, and measure content performance. For developers Contently documents the Talent API, a REST-first JSON API secured with scoped OAuth2 that lets teams search vetted creators, open NDA-scoped projects, brief and message contributors, submit draft reviews, approve and pay out work, and check funded balances, with state-change webhooks over Slack, Teams, or raw HTTP. Contently also advertises an MCP server registering six tools, though no endpoint is published. No OpenAPI specification, reference documentation, or developer portal is published; API access is obtained through a sales conversation. Contently maintains SOC 2 Type II, GDPR, CCPA, HIPAA (BAA), and FINRA reviewer-pool posture with a published controls matrix.
 
-Backed by: 500-global — https://contently.com
+**Areas:** Company · Content Marketing · Talent Marketplace · Freelance · Content Creation · Publishing · Editorial Workflow · Regulated Content · Compliance
+
+## Contently on APIs.io
+
+Everything profiled for Contently is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/contently/](https://apis.io/providers/contently/)** — or go straight to one of the APIs or properties below.
+
+### APIs (1)
+
+- [Contently Talent API](https://apis.io/apis/contently/contently-talent-api/) — REST-first JSON API to Contently's vetted creative network and project workflow. Search creators, open NDA-scoped projects, brief and message contributors,…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Contently Webhooks](https://apis.io/asyncapis/contently/contently-webhooks/)
+
+#### Security (4)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Contently Authentication](https://apis.io/security/contently/contently-authentication/)
+- [Contently Domain Security](https://apis.io/security/contently/contently-domain-security/)
+- [Contently Trust Center](https://apis.io/security/contently/contently-trust-center/)
+- [Contently Vulnerability Disclosure](https://apis.io/security/contently/contently-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Contently Plans Pricing](https://apis.io/plans/contently/contently-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Contently Rate Limits](https://apis.io/rate-limits/contently/contently-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://contently.com)
+- [Documentation](https://contently.com/platform/talent-api/)
+- [API reference](https://contently.com/platform/talent-api/)
+- [Support](https://support.contently.com)
+- [Blog](https://contently.com/strategist/)
+- [Security](https://contently.com/trust/security/)
+- [Compliance](https://contently.com/trust/security/)
+- [Terms of service](https://contently.com/terms/)
+- [Privacy policy](https://contently.com/privacy-policy/)
+- [GitHub](https://github.com/contently)
+
+## API Evangelist rating
+
+**Kin Score 40.8** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 39.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 21.1 |
+| Developer ergonomics | 35.7 |
+| Access clarity | 43.4 |
+
+**Agent readiness 22.3** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | yes |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | na |
+
+**Regulatory alignment 35.3** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/contently/](https://apis.io/providers/contently/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Contently: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/contently/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
